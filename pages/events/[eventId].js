@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 
-export default function Event() {
+export default function EventDetailPage() {
   const router = useRouter();
   return (
     <div>
-      <h1>Event {router.query.id}</h1>
+      <h1>Event {router.query.id} Detail</h1>
     </div>
   );
 }

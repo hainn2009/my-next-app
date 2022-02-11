@@ -1,4 +1,4 @@
-export default function AllEvents() {
+export default function AllEventsPage() {
   return (
     <div>
       <h1>All Events</h1>
