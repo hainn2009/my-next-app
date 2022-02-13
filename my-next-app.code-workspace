@@ -7,6 +7,7 @@
   "settings": {
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
-    "prettier.jsxSingleQuote": true
+    "prettier.jsxSingleQuote": true,
+    "prettier.endOfLine": "crlf"
   }
 }
