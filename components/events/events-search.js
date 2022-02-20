@@ -1,15 +1,18 @@
+import Button from "../ui/button";
+import classes from "./event-search.module.css";
+
 export default function EventsSearch(props) {
   return (
-    <form>
-      <div>
-        <div>
+    <form className={classes.form}>
+      <div className={classes.controls}>
+        <div className={classes.control}>
           <label htmlFor='year'>Year</label>
           <select id='year'>
             <option key='2021'>2021</option>
             <option key='2022'>2022</option>
           </select>
         </div>
-        <div>
+        <div className={classes.control}>
           <label htmlFor='month'>Month</label>
           <select id='month'>
             <option key='1'>January</option>
@@ -27,6 +30,7 @@ export default function EventsSearch(props) {
           </select>
         </div>
       </div>
+      <Button>Find Events</Button>
     </form>
   );
 }
