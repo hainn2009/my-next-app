@@ -8,6 +8,7 @@
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "prettier.jsxSingleQuote": true,
-    "prettier.endOfLine": "crlf"
+    "prettier.endOfLine": "crlf",
+    "workbench.editor.enablePreview": false
   }
 }
