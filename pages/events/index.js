@@ -15,7 +15,6 @@ export default function AllEventsPage(props) {
   );
   useEffect(() => {
     if (data) {
-      console.log("data", data);
       const transformEvents = Object.keys(data).map((id) => ({
         id: id,
         ...data[id],
@@ -32,8 +31,6 @@ export default function AllEventsPage(props) {
   if (error) return <p>No data yet</p>;
   if (!events) return <p>Loading...</p>;
   if (events) {
-    console.log(events);
-
     return (
       <Fragment>
         <EventsSearch onSearch={findEventHandler} />
