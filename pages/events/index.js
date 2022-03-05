@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import useSWR from "swr";
 
 import { getAllEvents } from "../../helpers/api-util";
@@ -33,6 +34,13 @@ export default function AllEventsPage(props) {
   if (events) {
     return (
       <Fragment>
+        <Head>
+          <title>All Events</title>
+          <meta
+            name='description'
+            content='This is great place to find events'
+          />
+        </Head>
         <EventsSearch onSearch={findEventHandler} />
         {/* <EventList items={getAllEvents()} /> */}
         <EventList items={events} />
