@@ -5,8 +5,18 @@ export default function TestPage() {
   const feedbackInputRef = useRef();
   function submitFormHandler(event) {
     event.preventDefault();
-    const email = emailInputRef.current.value;
-    const feedback = feedbackInputRef.current.value;
+    fetch("/api/feedback", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: emailInputRef.current.value,
+        text: feedbackInputRef.current.value,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   }
   return (
     <div>
