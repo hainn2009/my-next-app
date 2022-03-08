@@ -7,7 +7,7 @@ import classes from "./comments.module.css";
 function Comments(props) {
   const { eventId } = props;
   const [showComments, setShowComments] = useState(false);
-  const [comments, setComments] = useState();
+  const [comments, setComments] = useState([]);
   useEffect(() => {
     fetch(`/api/comments/${eventId}`)
       .then((res) => res.json())

@@ -10,4 +10,6 @@ export function saveNewletterRegistration(email) {
     path.join(process.cwd(), "data", "newsletter.json"),
     JSON.stringify(emails)
   );
+  const db = client.db();
+  const result = await db.collection("emails").insertOne({ email });
 }

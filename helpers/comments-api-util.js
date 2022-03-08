@@ -1,7 +1,13 @@
 import path from "path";
 import fs from "fs";
+import { MongoClient } from "mongodb";
 
-export function saveComment({ eventId, email, name, text }) {
+const getDb = async () => {
+  const client = await MongoClient.connect(process.env.MONGODB_URL);
+  return client.db();
+};
+
+export function createComment({ eventId, email, name, text }) {
   const comments = JSON.parse(
     fs.readFileSync(path.join(process.cwd(), "data", "comments.json"))
   );
@@ -13,7 +19,8 @@ export function saveComment({ eventId, email, name, text }) {
 }
 
 export async function getComments() {
-  return JSON.parse(
-    fs.readFileSync(path.join(process.cwd(), "data", "comments.json"))
-  );
+  return (await getDb()).collection("comments").find().toArray();
+  // return JSON.parse(
+  //   fs.readFileSync(path.join(process.cwd(), "data", "comments.json"))
+  // );
 }
