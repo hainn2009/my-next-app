@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import Head from "next/head";
 import Layout from "../components/layout/layout";
-import { NotificationContextProvider } from "../../store/notification-context";
+import { NotificationContextProvider } from "../store/notification-context";
 
 function MyApp({ Component, pageProps }) {
   return (

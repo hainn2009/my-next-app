@@ -1,13 +1,11 @@
+import { useRef, useState, useContext } from "react";
+
 import classes from "./newsletter-registration.module.css";
-import { useRef, useState } from "react";
+import NotificationContext from "../../store/notification-context";
 
 function NewsletterRegistration() {
   function registrationHandler(event) {
     event.preventDefault();
-
-    // fetch user input (state or refs)
-    // optional: validate input
-    // send valid data to API
 
     const email = emailInputRef.current.value;
     if (!email || email.trim() === "" || !email.includes("@")) {
@@ -16,16 +14,40 @@ function NewsletterRegistration() {
     } else {
       setIsValid(true);
     }
+    notificationCtx.showNotification({
+      title: "Signing up",
+      message: "Registering for new letters",
+      status: "pending",
+    });
     fetch("/api/newsletter", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),
     })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((res) => {
+        if (res.ok) return res.json();
+        return res.json().then((data) => {
+          throw new Error(data.message || "Something went wrong!");
+        });
+      })
+      .then((data) =>
+        notificationCtx.showNotification({
+          title: "Success",
+          message: "Success for registering new letters",
+          status: "success",
+        })
+      )
+      .catch((error) => {
+        notificationCtx.showNotification({
+          title: "Error",
+          message: error.message || "Something went wrong!",
+          status: "error",
+        });
+      });
   }
   const [isValid, setIsValid] = useState(true);
   const emailInputRef = useRef();
+  const notificationCtx = useContext(NotificationContext);
   return (
     <section className={classes.newsletter}>
       <h2>Sign up to stay updated!</h2>
