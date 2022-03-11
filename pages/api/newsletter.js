@@ -8,7 +8,6 @@ export default async function handler(req, res) {
     return res.status(422).json({ message: "Invalid email address" });
   try {
     const result = await saveNewletterRegistration(email);
-    console.log(result);
 
     res.status(201).json({
       message: "Sign up",
