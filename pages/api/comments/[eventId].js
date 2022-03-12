@@ -9,8 +9,10 @@ export default async function handler(req, res) {
       eventId: req.query.eventId,
       ...req.body,
     });
-    console.log(result);
-    res.status(200).json({ message: "Added comment" });
+    res.status(200).json({
+      message: "Added new comment",
+      data: { id: result.insertedId, eventId, ...req.body },
+    });
   } else {
     // const comments = [
     //   {
