@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     });
     res.status(200).json({
       message: "Added new comment",
-      data: { id: result.insertedId, eventId, ...req.body },
+      data: { id: result.insertedId, eventId: req.query.eventId, ...req.body },
     });
   } else {
     // const comments = [
